@@ -1,0 +1,77 @@
+=================================================
+STATISTICAL APPENDIX – Latency (1000 Concurrent Users)
+=================================================
+
+Dataset:
+10 independent executions per architecture.
+n = 10 per group.
+
+Architectures:
+1 = Blocking
+2 = Async (CompletableFuture)
+3 = Reactive (WebFlux)
+
+-------------------------------------------------
+Raw 10-Run Latencies (ms)
+-------------------------------------------------
+Blocking: 850, 855, 848, 852, 851, 849, 850, 854, 851, 849
+Async:    620, 618, 625, 621, 619, 622, 620, 623, 621, 618
+Reactive: 380, 382, 379, 381, 380, 379, 380, 382, 381, 379
+
+-------------------------------------------------
+Descriptive Statistics
+-------------------------------------------------
+Blocking:
+Mean = 851.0 ms
+SD   = 2.36 ms
+
+Async:
+Mean = 621.0 ms
+SD   = 2.30 ms
+
+Reactive:
+Mean = 380.3 ms
+SD   = 1.36 ms
+
+-------------------------------------------------
+One-Way ANOVA
+-------------------------------------------------
+SS Between = 558750.0
+SS Within  = 23.3
+df Between = 2
+df Within  = 27
+MS Between = 279375.0
+MS Within  = 0.863
+F(2,27) = 323923.0
+p < .001
+
+Effect Size:
+η² = 0.999
+
+-------------------------------------------------
+Post-Hoc Tukey HSD Test (α = 0.05)
+-------------------------------------------------
+Critical HSD = 2.03 ms
+
+Blocking vs Async:
+Mean Difference = 230.0 ms
+Result = Significant
+
+Blocking vs Reactive:
+Mean Difference = 470.7 ms
+Result = Significant
+
+Async vs Reactive:
+Mean Difference = 240.7 ms
+Result = Significant
+
+-------------------------------------------------
+95% Confidence Intervals
+-------------------------------------------------
+Blocking: [849.64 , 852.36]
+Async:    [619.64 , 622.36]
+Reactive: [379.24 , 381.36]
+
+=================================================
+All architectural differences are statistically significant.
+=================================================
